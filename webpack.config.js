@@ -24,7 +24,7 @@ module.exports = (env, argv) => {
         path.resolve(__dirname, 'dist'),
         path.resolve(__dirname, 'public'),
       ],
-      port: 3001,
+      port: 3000,
       open: true,
       hot: true,
       historyApiFallback: true,
