@@ -1,29 +1,63 @@
-import { Button, Container, Typography } from '@mui/material';
-import { useGeo } from './context/GeoContext';
-import { Select, MenuItem } from '@mui/material';
+import { useState, useCallback } from 'react';
+import { Box, GlobalStyles } from '@mui/material';
+import styled from '@emotion/styled';
 import { useTranslation } from './i18n/useTranslation';
-import { useState } from 'react';
+import GameBanner from './components/GameBanner';
+import GameFooter from './components/GameFooter';
+import GameModal from './components/GameModal';
+
+const globalStyles = {
+  html: {
+    margin: 0,
+    padding: 0,
+    height: '100%',
+  },
+  body: {
+    margin: 0,
+    padding: 0,
+    height: '100%',
+    overflowX: 'hidden',
+    overscrollBehavior: 'none',
+    fontFamily:
+      'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    '*': {
+      boxSizing: 'border-box',
+    },
+  },
+  '#root': {
+    height: '100%',
+    margin: 0,
+    padding: 0,
+  },
+};
+
+const AppWrapper = styled(Box)({
+  minHeight: '100vh',
+  display: 'flex',
+  flexDirection: 'column',
+});
 
 const App = () => {
-  const [open, setOpen] = useState(false);
-  const { geo, setGeo } = useGeo();
+  const [isGameOpen, setGameOpen] = useState(false);
   const { t } = useTranslation();
 
+  const openGame = useCallback(() => {
+    setGameOpen(true);
+  }, []);
+
+  const closeGame = useCallback(() => {
+    setGameOpen(false);
+  }, []);
+
   return (
-    <Container>
-      <Select
-        value={geo}
-        onChange={(e) => setGeo(e.target.value as any)}
-        sx={{ mb: 3 }}
-      >
-        <MenuItem value="EN">EN</MenuItem>
-        <MenuItem value="TR">TR</MenuItem>
-      </Select>
-      <Typography>{t('title')}</Typography>
-      <Button variant="contained" onClick={() => setOpen(true)}>
-        {t('play')}
-      </Button>
-    </Container>
+    <>
+      <GlobalStyles styles={globalStyles} />
+      <AppWrapper>
+        <GameBanner onOpen={openGame} buttonText={t('play')} />
+        <GameFooter />
+      </AppWrapper>
+      <GameModal open={isGameOpen} onClose={closeGame} />
+    </>
   );
 };
 
