@@ -3,6 +3,20 @@ import { styled } from '@mui/material/styles';
 import { useGeo } from '../context/GeoContext';
 import { useTranslation } from '../i18n/useTranslation';
 
+import {
+  characterImg,
+  casinoRoyale,
+  downloadIcon,
+  icon18plus,
+  licenseLogo,
+  instagramIcon,
+  telegramIcon,
+  xIcon,
+  mailIcon,
+  englishFlag,
+  turkishFlag,
+} from '../assets';
+
 const DESKTOP_MEDIA = '@media (min-width:1201px)';
 
 const GameFooterWrapper = styled(Box)({
@@ -251,31 +265,23 @@ const DownloadButton = styled(Button)(({ theme }) => ({
 }));
 
 const SOCIAL_LINKS = [
-  {
-    href: 'https://instagram.com',
-    icon: '/assets/icon-instagram.png',
-    altText: 'Instagram',
-  },
-  {
-    href: 'https://telegram.com',
-    icon: '/assets/icon-telegram.png',
-    altText: 'Telegram',
-  },
-  { href: 'https://x.com', icon: '/assets/icon-x.png', altText: 'X' },
-  { href: 'https://mail.com', icon: '/assets/icon-mail.png', altText: 'Mail' },
+  { href: 'https://instagram.com', icon: instagramIcon, altText: 'Instagram' },
+  { href: 'https://telegram.com', icon: telegramIcon, altText: 'Telegram' },
+  { href: 'https://x.com', icon: xIcon, altText: 'X' },
+  { href: 'https://mail.com', icon: mailIcon, altText: 'Mail' },
 ];
 
 const LANG_OPTIONS = [
   {
     value: 'EN',
     labelKey: 'english',
-    flag: '/assets/icon-english-flag.png',
+    flag: englishFlag,
     alt: 'English',
   },
   {
     value: 'TR',
     labelKey: 'turkish',
-    flag: '/assets/icon-turkish-flag.png',
+    flag: turkishFlag,
     alt: 'Turkish',
   },
 ];
@@ -288,18 +294,16 @@ const GameFooter = () => {
     <GameFooterWrapper>
       <Inner>
         <Layout>
-          <Character src="/assets/character.png" alt="Character" />
+          <Character src={characterImg} alt="Character" />
           <DownloadCard>
-            <Logo src="/assets/casino-royale.png" alt="Casino Royale" />
+            <Logo src={casinoRoyale} alt="Casino Royale" />
             <DownloadTitle>{t('download')}</DownloadTitle>
             <DownloadDescription>
               {t('downloadDescription')}
             </DownloadDescription>
             <DownloadButton
               variant="contained"
-              startIcon={
-                <img src="/assets/icon-download.png" alt="Download icon" />
-              }
+              startIcon={<img src={downloadIcon} alt="Download icon" />}
             >
               {t('install')}
             </DownloadButton>
@@ -359,11 +363,11 @@ const GameFooter = () => {
           </RightCol>
           <Compliance>
             <ComplianceRow>
-              <Box component="img" src="/assets/icon-18plus.png" width={58} />
+              <Box component="img" src={icon18plus} width={58} />
               <AgeRestrictionText>{t('only18Plus')}</AgeRestrictionText>
             </ComplianceRow>
             <ComplianceRow>
-              <Box component="img" src="/assets/license-logo.png" width={58} />
+              <Box component="img" src={licenseLogo} width={58} />
               <LicenseText>{t('licenseInfo')}</LicenseText>
             </ComplianceRow>
           </Compliance>

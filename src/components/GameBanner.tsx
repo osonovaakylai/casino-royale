@@ -1,13 +1,15 @@
 import { Box, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
+import { starsBg, casinoRoyale, logoSeven } from '../assets';
+
 const Wrapper = styled(Box)({
   boxSizing: 'border-box',
   width: '100%',
   flex: 1,
   minHeight: 'clamp(420px, 65vh, 720px)',
   paddingInline: '16px',
-  backgroundImage: 'url(/assets/stars-bg.png)',
+  backgroundImage: `url(${starsBg})`,
   backgroundSize: 'cover',
   backgroundPosition: 'center top',
   backgroundRepeat: 'no-repeat',
@@ -63,8 +65,8 @@ const GameBanner = ({ onOpen, buttonText }: GameBannerProps) => {
   return (
     <Wrapper>
       <Content>
-        <Logo src="/assets/casino-royale.png" alt="Casino Royale" />
-        <SlotImage src="/assets/logo-seven.png" alt="777 logo" />
+        <Logo src={casinoRoyale} alt="Casino Royale" />
+        <SlotImage src={logoSeven} alt="777 logo" />
         <PlayButton variant="contained" onClick={onOpen}>
           {buttonText}
         </PlayButton>
