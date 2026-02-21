@@ -11,6 +11,7 @@ module.exports = (env, argv) => {
       path: path.resolve(__dirname, 'dist'),
       filename: isDev ? 'bundle.js' : 'bundle.[contenthash].js',
       clean: true,
+      publicPath: isDev ? '/' : '/casino-royale',
     },
 
     resolve: {
