@@ -1,4 +1,4 @@
-import { Geo } from '../context/GeoContext';
+import { Geo } from '../providers/GeoProviders';
 
 export const translations: Record<Geo, Record<string, string>> = {
   EN: {

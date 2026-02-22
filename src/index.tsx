@@ -1,13 +1,13 @@
+import { useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ThemeProvider, CssBaseline } from '@mui/material';
-import { GeoProvider, useGeo } from './context/GeoContext';
-
+import { GeoProvider, useGeo } from './providers/GeoProviders';
+import { createThemeByGeo } from './theme/createThemeByGeo';
 import App from './App';
-import { createThemeByGeo } from './theme/geoTheme';
 
 const Root = () => {
   const { geo } = useGeo();
-  const theme = createThemeByGeo(geo);
+  const theme = useMemo(() => createThemeByGeo(geo), [geo]);
 
   return (
     <ThemeProvider theme={theme}>

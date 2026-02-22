@@ -1,4 +1,4 @@
-import { useGeo } from '../context/GeoContext';
+import { useGeo } from '../providers/GeoProviders';
 import { translations } from './translations';
 
 export const useTranslation = () => {

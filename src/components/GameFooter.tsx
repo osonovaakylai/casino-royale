@@ -1,6 +1,6 @@
 import { Box, Button, MenuItem, Select, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { useGeo } from '../context/GeoContext';
+import { useGeo, Geo, isGeo } from '../providers/GeoProviders';
 import { useTranslation } from '../i18n/useTranslation';
 
 import {
@@ -17,7 +17,14 @@ import {
   turkishFlag,
 } from '../assets';
 
+const TABLET_MEDIA = '@media (min-width:768px)';
 const DESKTOP_MEDIA = '@media (min-width:1201px)';
+
+const text16 = {
+  fontSize: 16,
+  lineHeight: '22px',
+  letterSpacing: 0,
+};
 
 const GameFooterWrapper = styled(Box)({
   display: 'flex',
@@ -69,7 +76,7 @@ const DownloadCard = styled(Box)(({ theme }) => ({
   },
 }));
 const Logo = styled('img')({
-  width: '175px',
+  width: 175,
 });
 const RightCol = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -93,7 +100,7 @@ const Compliance = styled(Box)(({ theme }) => ({
   opacity: 0.75,
   width: '100%',
 
-  '@media (min-width:768px)': {
+  [TABLET_MEDIA]: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -103,7 +110,6 @@ const Compliance = styled(Box)(({ theme }) => ({
   [DESKTOP_MEDIA]: {
     flexDirection: 'column',
     alignItems: 'flex-start',
-    justifyContent: 'flex-start',
     width: 'auto',
     textAlign: 'left',
     order: 3,
@@ -114,7 +120,7 @@ const ComplianceRow = styled(Box)(({ theme }) => ({
   flexDirection: 'column',
   alignItems: 'center',
   gap: theme.spacing(1.5),
-  '@media (min-width:768px)': {
+  [TABLET_MEDIA]: {
     width: 287,
   },
   [DESKTOP_MEDIA]: {
@@ -137,10 +143,10 @@ const SocialMedia = styled(Box)(({ theme }) => ({
   justifyContent: 'center',
 }));
 const LangSelect = styled(Select)(() => ({
-  width: 289,
+  width: '100%',
+  maxWidth: 289,
   height: 56,
   borderRadius: 8,
-
   background: 'rgba(255, 255, 255, 0.1)',
   backdropFilter: 'blur(10px)',
 
@@ -159,7 +165,7 @@ const LangSelect = styled(Select)(() => ({
   '& .MuiSelect-select': {
     display: 'flex',
     alignItems: 'center',
-    padding: '12px',
+    padding: 12,
     color: '#fff',
   },
 
@@ -167,7 +173,7 @@ const LangSelect = styled(Select)(() => ({
     color: '#fff',
   },
 }));
-const LangMenuItem = styled(MenuItem)(() => ({
+const LangMenuItem = styled(MenuItem)({
   color: '#fff',
   background: 'transparent',
 
@@ -178,83 +184,69 @@ const LangMenuItem = styled(MenuItem)(() => ({
   '&.Mui-selected': {
     background: 'rgba(255,255,255,0.12)',
   },
+});
 
-  '&.Mui-selected:hover': {
-    background: 'rgba(255,255,255,0.12)',
-  },
-}));
 const FlagIcon = styled('img')(({ theme }) => ({
   width: 32,
   height: 32,
   borderRadius: '50%',
   objectFit: 'cover',
   marginRight: theme.spacing(1.5),
-  flexShrink: 0,
 }));
+
 const DownloadTitle = styled(Typography)(() => ({
-  fontSize: '32px',
+  fontSize: 32,
   fontWeight: 800,
   lineHeight: '40px',
-  letterSpacing: 0,
   color: '#fff',
 }));
-const SocialMediaText = styled(Typography)(() => ({
-  fontSize: '16px',
-  fontWeight: 400,
-  lineHeight: '22px',
-  letterSpacing: 0,
-  color: '#BABABA',
-}));
-const DownloadDescription = styled(Typography)(() => ({
-  fontSize: '16px',
-  fontWeight: 600,
-  lineHeight: '22px',
-  letterSpacing: 0,
-  color: '#BABABA',
-  textAlign: 'center',
-}));
-const AgeRestrictionText = styled(Typography)(() => ({
-  fontSize: '16px',
-  fontWeight: 400,
-  lineHeight: '22px',
-  letterSpacing: 0,
-  color: 'rgba(251, 251, 251, 0.7)',
-}));
-const LicenseText = styled(Typography)(() => ({
-  fontSize: '16px',
-  fontWeight: 400,
-  lineHeight: '22px',
-  letterSpacing: 0,
-  textAlign: 'center',
-  color: 'rgba(251, 251, 251, 0.7)',
 
+const SocialMediaText = styled(Typography)(() => ({
+  ...text16,
+  fontWeight: 400,
+  color: '#BABABA',
+}));
+
+const DownloadDescription = styled(Typography)(() => ({
+  ...text16,
+  fontWeight: 600,
+  color: '#BABABA',
+  textAlign: 'center',
+}));
+
+const AgeRestrictionText = styled(Typography)(() => ({
+  ...text16,
+  fontWeight: 400,
+  color: 'rgba(251, 251, 251, 0.7)',
+}));
+
+const LicenseText = styled(Typography)(() => ({
+  ...text16,
+  fontWeight: 400,
+  textAlign: 'center',
+  color: 'rgba(251, 251, 251, 0.7)',
   [DESKTOP_MEDIA]: {
     textAlign: 'left',
   },
 }));
+
 const DownloadButton = styled(Button)(({ theme }) => ({
-  width: '250px',
-  minHeight: '56px',
-  borderRadius: '12px',
+  width: 250,
+  minHeight: 56,
+  borderRadius: 12,
   padding: `${theme.spacing(1)} ${theme.spacing(3)}`,
   gap: theme.spacing(1),
-
   textTransform: 'none',
-  fontSize: '16px',
+  fontSize: 16,
   fontWeight: 600,
   lineHeight: '22px',
-
   background: 'linear-gradient(90deg, #FF8D6B 0%, #FFBA47 100%)',
   boxShadow: 'none',
 
   '& .MuiButton-startIcon img': {
-    width: '24px',
-    height: '24px',
+    width: 24,
+    height: 24,
     objectFit: 'contain',
-  },
-
-  '& .MuiButton-startIcon': {
-    marginRight: theme.spacing(1),
   },
 
   '&:hover': {
@@ -272,23 +264,23 @@ const SOCIAL_LINKS = [
 ];
 
 const LANG_OPTIONS = [
-  {
-    value: 'EN',
-    labelKey: 'english',
-    flag: englishFlag,
-    alt: 'English',
-  },
-  {
-    value: 'TR',
-    labelKey: 'turkish',
-    flag: turkishFlag,
-    alt: 'Turkish',
-  },
+  { value: 'EN', labelKey: 'english', flag: englishFlag, alt: 'English' },
+  { value: 'TR', labelKey: 'turkish', flag: turkishFlag, alt: 'Turkish' },
 ];
 
 const GameFooter = () => {
   const { geo, setGeo } = useGeo();
   const { t } = useTranslation();
+
+  const handleGeoChange = (
+    e: React.ChangeEvent<HTMLInputElement> | { target: { value: unknown } },
+  ) => {
+    const value = e.target.value;
+
+    if (isGeo(String(value))) {
+      setGeo(value as Geo);
+    }
+  };
 
   return (
     <GameFooterWrapper>
@@ -311,7 +303,7 @@ const GameFooter = () => {
           <RightCol>
             <LangSelect
               value={geo}
-              onChange={(e) => setGeo(e.target.value as typeof geo)}
+              onChange={handleGeoChange}
               MenuProps={{
                 PaperProps: {
                   sx: {
@@ -347,7 +339,8 @@ const GameFooter = () => {
                     rel="noopener noreferrer"
                     sx={{
                       display: 'inline-flex',
-                      cursor: 'pointer',
+                      transition: 'opacity .2s',
+                      '&:hover': { opacity: 0.85 },
                     }}
                   >
                     <Box

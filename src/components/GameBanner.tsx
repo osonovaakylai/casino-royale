@@ -8,13 +8,15 @@ const Wrapper = styled(Box)({
   width: '100%',
   flex: 1,
   minHeight: 'clamp(420px, 65vh, 720px)',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   paddingInline: '16px',
+  paddingBlock: 'clamp(160px, 20vh, 240px)',
   backgroundImage: `url(${starsBg})`,
   backgroundSize: 'cover',
   backgroundPosition: 'center top',
   backgroundRepeat: 'no-repeat',
-  display: 'flex',
-  justifyContent: 'center',
 });
 
 const Content = styled(Box)({
@@ -22,39 +24,49 @@ const Content = styled(Box)({
   flexDirection: 'column',
   alignItems: 'center',
   textAlign: 'center',
-
-  marginTop: 'clamp(200px, 22vh, 250px)',
-  marginBottom: 'clamp(200px, 22vh, 250px)',
+  width: '100%',
+  maxWidth: 420,
 });
 
 const Logo = styled('img')(({ theme }) => ({
+  display: 'block',
   width: 'clamp(140px, 30vw, 220px)',
   marginBottom: theme.spacing(3),
 }));
 
 const SlotImage = styled('img')(({ theme }) => ({
+  display: 'block',
   width: 'clamp(180px, 50vw, 320px)',
   marginBottom: theme.spacing(4),
 }));
 
-const PlayButton = styled(Button)(({ theme }) => ({
-  width: '100%',
-  maxWidth: 360,
-  height: 56,
-  borderRadius: 12,
-  padding: '20px 24px',
-  textTransform: 'none',
-  fontSize: 16,
-  fontWeight: 600,
-  lineHeight: '22px',
-  background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.light} 100%)`,
-  boxShadow: 'none',
-  '&:hover': {
-    background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.light} 100%)`,
-    filter: 'brightness(0.98)',
+const PlayButton = styled(Button)(({ theme }) => {
+  const gradient = `linear-gradient(
+    90deg,
+    ${theme.palette.primary.main} 0%,
+    ${theme.palette.primary.light} 100%
+  )`;
+
+  return {
+    width: '100%',
+    maxWidth: 360,
+    height: 56,
+    borderRadius: 12,
+    padding: '20px 24px',
+    textTransform: 'none',
+    fontSize: 16,
+    fontWeight: 600,
+    lineHeight: '22px',
+    background: gradient,
     boxShadow: 'none',
-  },
-}));
+
+    '&:hover': {
+      background: gradient,
+      filter: 'brightness(0.98)',
+      boxShadow: 'none',
+    },
+  };
+});
 
 type GameBannerProps = {
   onOpen: () => void;
@@ -65,8 +77,8 @@ const GameBanner = ({ onOpen, buttonText }: GameBannerProps) => {
   return (
     <Wrapper>
       <Content>
-        <Logo src={casinoRoyale} alt="Casino Royale" />
-        <SlotImage src={logoSeven} alt="777 logo" />
+        <Logo src={casinoRoyale} alt="Casino Royale" loading="lazy" />
+        <SlotImage src={logoSeven} alt="777 logo" loading="lazy" />
         <PlayButton variant="contained" onClick={onOpen}>
           {buttonText}
         </PlayButton>

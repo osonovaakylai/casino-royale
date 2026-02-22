@@ -1,6 +1,9 @@
-import { createContext, FC, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 export type Geo = 'EN' | 'TR';
+
+export const isGeo = (value: string): value is Geo =>
+  value === 'EN' || value === 'TR';
 
 type GeoContextType = {
   geo: Geo;
