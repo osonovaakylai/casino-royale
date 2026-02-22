@@ -37,7 +37,7 @@ const SlotImage = styled('img')(({ theme }) => ({
   marginBottom: theme.spacing(4),
 }));
 
-const PlayButton = styled(Button)({
+const PlayButton = styled(Button)(({ theme }) => ({
   width: '100%',
   maxWidth: 360,
   height: 56,
@@ -47,14 +47,14 @@ const PlayButton = styled(Button)({
   fontSize: 16,
   fontWeight: 600,
   lineHeight: '22px',
-  background: 'linear-gradient(90deg, #FF8D6B 0%, #FFBA47 100%)',
+  background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.light} 100%)`,
   boxShadow: 'none',
   '&:hover': {
-    background: 'linear-gradient(90deg, #FF8D6B 0%, #FFBA47 100%)',
+    background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.light} 100%)`,
     filter: 'brightness(0.98)',
     boxShadow: 'none',
   },
-});
+}));
 
 type GameBannerProps = {
   onOpen: () => void;

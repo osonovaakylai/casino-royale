@@ -14,21 +14,16 @@ const GAME_URL =
 const Overlay = styled(Box)(({ theme }) => ({
   position: 'fixed',
   inset: 0,
-  backgroundColor: 'rgba(0,0,0,0.8)',
   zIndex: theme.zIndex.modal + 1,
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+  backgroundColor: '#000',
 }));
 
-const ModalContent = styled(Box)(({ theme }) => ({
+const ModalContent = styled(Box)({
   position: 'relative',
-  width: '90%',
-  height: '90%',
-  backgroundColor: '#000',
-  borderRadius: theme.spacing(1),
+  width: '100vw',
+  height: '100vh',
   overflow: 'hidden',
-}));
+});
 
 const CloseButton = styled(IconButton)({
   position: 'absolute',
@@ -36,7 +31,11 @@ const CloseButton = styled(IconButton)({
   right: 10,
   color: '#fff',
   zIndex: 10,
-  cursor: 'pointer',
+  background: 'rgba(0,0,0,0.4)',
+
+  '&:hover': {
+    background: 'rgba(0,0,0,0.6)',
+  },
 });
 
 const GameFrame = styled('iframe')({
@@ -54,25 +53,11 @@ const GameModal = ({ open, onClose }: GameModalProps) => {
     };
   }, [open]);
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
-
-    if (open) {
-      window.addEventListener('keydown', handleKeyDown);
-    }
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [open, onClose]);
-
   if (!open) return null;
 
   return (
-    <Overlay onClick={onClose}>
-      <ModalContent onClick={(e) => e.stopPropagation()}>
+    <Overlay>
+      <ModalContent>
         <CloseButton onClick={onClose}>
           <CloseIcon />
         </CloseButton>

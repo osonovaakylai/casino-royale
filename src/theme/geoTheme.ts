@@ -7,10 +7,8 @@ export const createThemeByGeo = (geo: Geo) => {
       return createTheme({
         palette: {
           primary: {
-            main: '#d32f2f',
-          },
-          background: {
-            default: '#fff5f5',
+            main: '#FF8D6B',
+            light: '#FFBA47',
           },
         },
       });
@@ -20,10 +18,8 @@ export const createThemeByGeo = (geo: Geo) => {
       return createTheme({
         palette: {
           primary: {
-            main: '#1976d2',
-          },
-          background: {
-            default: '#f5f7fa',
+            main: '#00A6FF',
+            light: '#00E0FF',
           },
         },
       });
