@@ -18,7 +18,7 @@ import {
 } from '../assets';
 
 const TABLET_MEDIA = '@media (min-width:768px)';
-const DESKTOP_MEDIA = '@media (min-width:1201px)';
+const DESKTOP_MEDIA = '@media (min-width:1440px)';
 
 const text16 = {
   fontSize: 16,
@@ -30,35 +30,53 @@ const GameFooterWrapper = styled(Box)({
   display: 'flex',
   flexWrap: 'wrap',
   background: 'linear-gradient(180deg, #06225D 0%, #02011F 100%)',
-  padding: '36px 16px',
+  padding: '60px 28px 48px',
   color: '#BABABA',
-  [DESKTOP_MEDIA]: {
-    padding: '40px 16px',
+
+  '@media (min-width: 480px)': {
+    paddingLeft: 45,
+    paddingRight: 45,
+  },
+
+  [TABLET_MEDIA]: {
+    padding: '60px 32px',
   },
 });
 const Inner = styled(Box)({
   width: '100%',
-  maxWidth: 1440,
+  maxWidth: 1920,
   margin: '0 auto',
+
+  [TABLET_MEDIA]: {
+    margin: 0,
+  },
 });
 const Layout = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  gap: theme.spacing(4),
+  gap: 52,
   [DESKTOP_MEDIA]: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    gap: theme.spacing(6),
+    alignItems: 'stretch',
+    gap: 20,
   },
 }));
-const Character = styled('img')({
+
+const CharacterWrapper = styled(Box)({
   display: 'none',
-  width: 240,
   [DESKTOP_MEDIA]: {
-    display: 'block',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     order: 1,
+  },
+});
+const Character = styled('img')({
+  width: 240,
+
+  '@media (min-width:1920px)': {
+    width: 288,
   },
 });
 const DownloadCard = styled(Box)(({ theme }) => ({
@@ -70,9 +88,15 @@ const DownloadCard = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2.25),
   textAlign: 'center',
   width: '100%',
-  maxWidth: 360,
+  maxWidth: 320,
+
+  '@media (min-width: 480px)': {
+    maxWidth: 390,
+  },
+
   [DESKTOP_MEDIA]: {
     order: 2,
+    marginLeft: 20,
   },
 }));
 const Logo = styled('img')({
@@ -82,12 +106,13 @@ const RightCol = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  gap: theme.spacing(3),
+  gap: 60,
   width: '100%',
   [DESKTOP_MEDIA]: {
     width: 'auto',
-    alignItems: 'flex-end',
+    justifyContent: 'space-between',
     order: 4,
+    marginLeft: 'auto',
   },
 }));
 
@@ -113,6 +138,7 @@ const Compliance = styled(Box)(({ theme }) => ({
     width: 'auto',
     textAlign: 'left',
     order: 3,
+    marginLeft: 20,
   },
 }));
 const ComplianceRow = styled(Box)(({ theme }) => ({
@@ -135,6 +161,10 @@ const SocialBlock = styled(Box)(({ theme }) => ({
   gap: theme.spacing(1.5),
   alignItems: 'center',
   width: '100%',
+
+  [DESKTOP_MEDIA]: {
+    alignItems: 'flex-end',
+  },
 }));
 
 const SocialMedia = styled(Box)(({ theme }) => ({
@@ -171,6 +201,10 @@ const LangSelect = styled(Select)(() => ({
 
   '& .MuiSvgIcon-root': {
     color: '#fff',
+  },
+
+  [DESKTOP_MEDIA]: {
+    marginTop: 40,
   },
 }));
 const LangMenuItem = styled(MenuItem)({
@@ -286,7 +320,9 @@ const GameFooter = () => {
     <GameFooterWrapper>
       <Inner>
         <Layout>
-          <Character src={characterImg} alt="Character" />
+          <CharacterWrapper>
+            <Character src={characterImg} alt="Character" />
+          </CharacterWrapper>
           <DownloadCard>
             <Logo src={casinoRoyale} alt="Casino Royale" />
             <DownloadTitle>{t('download')}</DownloadTitle>

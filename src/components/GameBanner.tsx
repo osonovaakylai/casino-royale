@@ -11,8 +11,8 @@ const Wrapper = styled(Box)({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  paddingInline: '16px',
-  paddingBlock: 'clamp(160px, 20vh, 240px)',
+  paddingInline: 16,
+  paddingBlock: 'clamp(199px, 20vh, 240px)',
   backgroundImage: `url(${starsBg})`,
   backgroundSize: 'cover',
   backgroundPosition: 'center top',
@@ -28,17 +28,17 @@ const Content = styled(Box)({
   maxWidth: 420,
 });
 
-const Logo = styled('img')(({ theme }) => ({
+const Logo = styled('img')({
   display: 'block',
   width: 'clamp(140px, 30vw, 220px)',
-  marginBottom: theme.spacing(3),
-}));
+  marginBottom: 48,
+});
 
-const SlotImage = styled('img')(({ theme }) => ({
+const SlotImage = styled('img')({
   display: 'block',
   width: 'clamp(180px, 50vw, 320px)',
-  marginBottom: theme.spacing(4),
-}));
+  marginBottom: 32,
+});
 
 const PlayButton = styled(Button)(({ theme }) => {
   const gradient = `linear-gradient(
@@ -56,7 +56,7 @@ const PlayButton = styled(Button)(({ theme }) => {
     textTransform: 'none',
     fontSize: 16,
     fontWeight: 600,
-    lineHeight: '22px',
+    lineHeight: 22,
     background: gradient,
     boxShadow: 'none',
 
